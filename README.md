@@ -1,2 +1,3 @@
-# Library_Management_System_Using_Python_And_MySQL
+# Library Management System Using Python And MySQL
+
 A Python project for Library management with MySQL data base  
