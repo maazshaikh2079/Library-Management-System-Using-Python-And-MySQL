@@ -83,9 +83,10 @@ class Library:
         self._cmd = "select * from Library where Book_Title=%s and Author=%s"
         info = (bktl, atr)
         self._cur.execute(self._cmd, info)
-        row = self._cur.fetchall()
-
-        if row != []:
+        result = self._cur.fetchall()
+        
+        if result != []:
+            row=result[0]
             print("________Book-Available________\n")
             print(" ID     :", row[0])
             print(" Title  :", row[1])
@@ -130,9 +131,10 @@ class Library:
         self._cmd = "select * from Borrowed where Book_Title=%s and Author=%s"
         info = (bktl, atr)
         self._cur.execute(self._cmd, info)
-        row = self._cur.fetchall()
-
-        if row != []:
+        result = self._cur.fetchall()
+        
+        if result != []:
+            row=result[0]
             print("________Book-Borrowed________\n")
             print(" Borrower :", row[0])
             print(" Phone no.:", row[1])
@@ -162,9 +164,9 @@ class Library:
                 self._cmd = "select * from Library where Book_ID=%s and Book_Title=%s and Author=%s"
                 info = (bkid, bktl, atr)
                 self._cur.execute(self._cmd, info)
-                row = self._cur.fetchall()
+                result = self._cur.fetchall()
 
-                if row == []:
+                if result == []:
                     self._cmd = "Insert into Library(Book_ID,Book_Title,Author) values(%s,%s,%s)"
                     info = (bkid, bktl, atr)
                     self._cur.execute(self._cmd, info)
@@ -203,9 +205,9 @@ class Library:
                 self._cmd = "select * from Library where Book_ID=%s and Book_Title=%s and Author=%s"
                 info = (bkid, bktl, atr)
                 self._cur.execute(self._cmd, info)
-                row = self._cur.fetchall()
+                result = self._cur.fetchall()
 
-                if row != []:
+                if result != []:
                     self._cmd = "Delete from Library where Book_ID=%s and Book_Title=%s and Author=%s"
                     info = (bkid, bktl, atr)
                     self._cur.execute(self._cmd, info)
@@ -238,9 +240,9 @@ class Library:
                 self._cmd = "select * from Library where Book_ID=%s and Book_Title=%s and Author=%s"
                 info = (bkid, bktl, atr)
                 self._cur.execute(self._cmd, info)
-                row = self._cur.fetchall()
+                result = self._cur.fetchall()
 
-                if row != []:
+                if result != []:
                     self._cmd = "Delete from Library where Book_ID=%s and Book_Title=%s and Author=%s"
                     info = (bkid, bktl, atr)
                     self._cur.execute(self._cmd, info)
@@ -268,8 +270,8 @@ class Library:
         self._cmd = "select * from Borrowed where Borrower=%s and Phone_No=%s"
         info = (unm, phn)
         self._cur.execute(self._cmd, info)
-        row = self._cur.fetchall()
-        if row != []:
+        result = self._cur.fetchall()
+        if result != []:
             while True:
                 ch = input(" Enter 'C' to continue returning or 'Q' to quit: ")
                 print()
@@ -282,9 +284,9 @@ class Library:
                     self._cmd = "select * from Borrowed where Borrower=%s and Phone_No=%s and Book_ID=%s and Book_Title=%s and Author=%s"
                     info = (unm, phn, bkid, bktl, atr)
                     self._cur.execute(self._cmd, info)
-                    row = self._cur.fetchall()
+                    result = self._cur.fetchall()
 
-                    if row != []:
+                    if result != []:
                         self._cmd = "Delete from Borrowed where Borrower=%s and Phone_No=%s and Book_ID=%s and Book_Title=%s and Author=%s"
                         info = (unm, phn, bkid, bktl, atr)
                         self._cur.execute(self._cmd, info)
@@ -438,30 +440,31 @@ class User(Library):
 
 
 # Driver code :-
-li = Library()
-ad = Admin()
-us = User()
+if __name__ == "__main__":
+    li = Library()
+    ad = Admin()
+    us = User()
 
-ch = int()
+    ch = int()
 
-while (ch != 3):
-    li.lmsMenu()
+    while (ch != 3):
+        li.lmsMenu()
 
-    ch = int(input(" Enter your choice : "))
-    print()
+        ch = int(input(" Enter your choice : "))
+        print()
 
-    match ch:
-        case 1:
-            ad.entrAsAdm()
+        match ch:
+            case 1:
+                ad.entrAsAdm()
 
-        case 2:
-            us.entrAsUsr()
+            case 2:
+                us.entrAsUsr()
 
-        case 3:
-            li.exitSys()
+            case 3:
+                li.exitSys()
 
-        case _:
-            print("-----------------------------")
-            print(" Invalid choice!             ")
-            print("-----------------------------\n")
-            print()
+            case _:
+                print("-----------------------------")
+                print(" Invalid choice!             ")
+                print("-----------------------------\n")
+                print()
