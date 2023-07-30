@@ -1,3 +1,18 @@
+# Note:-
+# Data-base name : lmsdb
+# Password : Shaikh@2079
+# Host : localhost
+# User : root          
+# Admin password : Admin_1@2079
+# Number books of present :-
+# [In Library Table] - 10 books
+# [In Borrowed Table] - 2 books
+# Users / borrowers  present :-
+# [In Borrowed Table]
+# i)  Maaz - 7208613298 
+# ii) Wahaj - 9321627175
+
+# Program:-
 from mysql.connector import connect
 from mysql.connector.errors import InterfaceError
 from mysql.connector.errors import ProgrammingError
@@ -439,7 +454,7 @@ class User(Library):
                     print("-----------------------------\n")
 
 
-# Driver code :-
+# Driver code:-
 if __name__ == "__main__":
     li = Library()
     ad = Admin()
